@@ -1,0 +1,27 @@
+.fixed {
+  position: fixed;
+  top: 4rem;     /* Yuqori qismidan masofa */
+  right: 1rem;   /* O'ng qismidan masofa */
+  z-index: 999;  /* Boshqa elementlar ustida bo'lishi uchun */
+}
+
+.transform {
+  /* Animate qilish uchun transform */
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal {
+  background-color: #ffffff; /* Oq fon */
+  border-radius: 0.5rem;     /* Burchaklarni yumshatish */
+  padding: 1.5rem;           /* Ichki bo'shliq */
+  width: 100%;
+  max-width: 24rem;         /* Maksimal kenglik */
+}
+
+.hidden {
+  transform: translate(100%, -100%); /* Modalni o'ng tepa burchakdan yashirish */
+}
+
+.visible {
+  transform: translate(0, 0); /* Modalni ko'rsatish */
+}

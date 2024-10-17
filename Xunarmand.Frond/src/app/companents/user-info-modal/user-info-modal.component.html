@@ -1,0 +1,20 @@
+<div class="fixed top-3 right-3 flex items-start justify-end bg-gray-900">
+  <div class="bg-gray-900 rounded-lg p-6 m-4 w-full max-w-md shadow-lg transform transition-transform duration-300 ease-in-out"
+       [ngClass]="{'translate-y-0': isVisible, 'translate-y-[-100%]': !isVisible}">
+    <h2 class="text-2xl font-bold mb-4 text-yellow-300">User Information</h2>
+    <div class="mb-2">
+      <p class="text-yellow-300"><strong>Name : </strong> <span class="text-yellow-300 font-bold">{{ data.username }}</span></p>
+    </div>
+    <div class="mb-2">
+      <p class="text-yellow-300"><strong>Email : </strong> <span class="text-yellow-300 font-bold">{{ data.email }}</span></p>
+    </div>
+    <div class="mb-2">
+      <p class="text-yellow-300"><strong>Phone :  </strong> <span class="text-yellow-300 font-bold">{{ data.phone }}</span></p>
+    </div>
+
+    <div class="flex justify-between mt-4"> <!-- Flex konteyneri qo'shildi -->
+      <button mat-button (click)="close()" class="px-4 py-2 bg-yellow-300 hover:bg-yellow-500 text-white font-semibold rounded transition duration-200 ease-in-out transform hover:scale-105">Close</button>
+      <button mat-button (click)="logout()" class="px-4 py-2 bg-yellow-300 hover:bg-yellow-500 text-white font-semibold rounded transition duration-200 ease-in-out transform hover:scale-105">Logout</button>
+    </div>
+  </div>
+</div>

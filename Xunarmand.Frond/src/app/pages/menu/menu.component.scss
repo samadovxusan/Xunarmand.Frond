@@ -1,0 +1,117 @@
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+/* Telefon uchun menyu */
+@media (max-width: 750px) {
+  .navbar .flex-grow {
+    display: none; /* Katta ekranda tugmalarni yashirish */
+  }
+}
+
+.menu-open {
+  display: block;
+}
+.language-button {
+  //background-color: #007bff; /* Tugma rangi */
+  color: white; /* Matn rangi */
+  border: none; /* Chegarani olib tashlash */
+  //padding: 10px 20px; /* Tugma ichidagi bo'shliqlar */
+  border-radius: 5px; /* Tugma burchaklari */
+  cursor: pointer; /* Pointer ko'rsatgichi */
+}
+
+.language-button:hover {
+  background-color: gray; /* Hover holati */
+}
+
+/* Dropdown */
+.absolute {
+  position: absolute;
+}
+
+
+
+.example-box.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-chip .cdk-drop-list-dragging {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem; /* Kichik ekranlarda h1 shrift hajmini kichikroq qilish */
+    text-align: center;
+    margin: 0 auto; /* Markazga joylash */
+  }
+.haaa{
+
+}
+  .flex {
+    //flex-direction: column; /* Kichik ekranlarda ustma-ust chiqarish */
+    align-items: center; /* Tugmalarni markazga joylash */
+  }
+
+  .space-x-10 {
+    margin: 0; /* Bo'shliqni olib tashlash */
+  }
+
+  button {
+    margin-bottom: 15px; /* Tugmalar orasida bo'sh joy */
+    width: 100%; /* Kichik ekranlarda tugmalarni kengroq qilish */
+    max-width: 300px; /* Tugmalar kengligini cheklash */
+  }
+
+
+
+  @media (max-width: 768px) {
+    footer .container {
+      flex-direction: row; /* Elementlarni gorizontal tartibda joylashtirish */
+      text-align: center; /* Matnni markazda joylashtirish */
+    }
+
+    footer .container div {
+      width: 100%; /* Har bir div'ni to'liq kenglikda qilish */
+    }
+
+    footer ul {
+      margin-bottom: 20px; /* Har bir ul elementiga pastki masofa berish */
+    }
+
+    footer ul li {
+      margin-bottom: 10px; /* Har bir li elementiga pastki masofa berish */
+    }
+
+    footer .container img {
+      width: 120px; /* Logo hajmini kichikroq qilish */
+      height: 120px; /* Logo balandligini o'rnatish */
+      margin: 0 auto 20px; /* Markazda joylashtirish */
+    }
+
+    footer .container a {
+      font-size: 1rem; /* Matn o'lchamlarini moslashtirish */
+    }
+
+    footer .container .flex {
+      justify-content: center; /* Flex elementlarini markazga joylashtirish */
+    }
+    .flex {
+      flex-direction: column; /* Kichik ekranlarda ustma-ust chiqarish */
+      align-items: center; /* Tugmalarni markazga joylash */
+    }
+
+    footer .border-t .flex {
+      justify-content: center; /* Flex elementlarini markazga joylashtirish */
+      margin-bottom: 20px; /* Pastki masofa berish */
+    }
+
+    footer .border-t .text-lg {
+      margin-top: 10px; /* Yuqoridan masofa berish */
+    }
+  }
+
+}
+
+

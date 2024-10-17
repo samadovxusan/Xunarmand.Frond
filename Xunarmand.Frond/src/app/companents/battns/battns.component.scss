@@ -1,0 +1,29 @@
+.example-box.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-chip .cdk-drop-list-dragging {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem; /* Kichik ekranlarda h1 shrift hajmini kichikroq qilish */
+    text-align: center;
+    margin: 0 auto; /* Markazga joylash */
+  }
+
+  .flex {
+    flex-direction: column; /* Kichik ekranlarda ustma-ust chiqarish */
+    align-items: center; /* Tugmalarni markazga joylash */
+  }
+
+  .space-x-10 {
+    margin: 0; /* Bo'shliqni olib tashlash */
+  }
+
+  button {
+    margin-bottom: 15px; /* Tugmalar orasida bo'sh joy */
+    width: 100%; /* Kichik ekranlarda tugmalarni kengroq qilish */
+    max-width: 300px; /* Tugmalar kengligini cheklash */
+  }
+}

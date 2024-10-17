@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+img {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2c5282; /* hover rangini o'zgartirish */
+}
+.custom-snackbar {
+  background-color: #4caf50; /* Yashil rang */
+  color: white; /* Oq matn */
+  font-size: 20px; /* Katta matn */
+  text-align: center; /* Markazda joylashish */
+  padding: 16px; /* Xabarni to'g'ri joylashishi uchun */
+  border-radius: 8px; /* Yumshoq burchaklar */
+}
+bosmani{
+  width: 350px;
+  height: 300px;
+}
