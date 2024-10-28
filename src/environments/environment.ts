@@ -1,4 +1,4 @@
 export const environment = {
   production :false,
-  apiUrl : 'http://xunarmand.uz/api/'
+  apiUrl : 'https://backend.xunarmand.uz/api/'
 };

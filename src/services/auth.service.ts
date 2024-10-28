@@ -41,7 +41,7 @@ export class AuthService {
   addproduct(data :CreateProduct): Observable<any>{
     var createProduct = data;
     console.log('->>>>>>>', createProduct);
-    return this.http.post<any>(`http://backend.xunarmand.uz/api/product/product${createProduct}`, createProduct).pipe(
+    return this.http.post<any>(`https://backend.xunarmand.uz/api/product/product${createProduct}`, createProduct).pipe(
       map ((response: any) => {
         console.log(response);
         return response;
@@ -71,7 +71,7 @@ export class AuthService {
   }
 
   sendmessage(data: string): Observable<any> {
-    return this.http.post<any>(`http://backend.xunarmand.uz/api/sendtgbot/message?str=${data}`, data).pipe(
+    return this.http.post<any>(`https://backend.xunarmand.uz/api/sendtgbot/message?str=${data}`, data).pipe(
       map((response: any) => {
         console.log(response);
         return response;
@@ -79,7 +79,7 @@ export class AuthService {
     );
   }
   imageurl(data: any): Observable<any> {
-    return this.http.get<ProductResponse>( 'http://backend.xunarmand.uz/api/imagepath/imageurl' + data).pipe(
+    return this.http.get<ProductResponse>( 'https://backend.xunarmand.uz/api/imagepath/imageurl' + data).pipe(
       map((response: any) => {
         console.log(response);
         return response;
