@@ -1,0 +1,57 @@
+<div class="p-5 bg-gray-800 text-white rounded">
+  <h2 class="text-2xl mb-4">Add New Product</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="">
+      <label for="productName" class="block mb-1">Product Name</label>
+      <input id="productName" formControlName="productName" type="text"
+             class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Enter product name">
+      <div *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched" class="text-red-500">
+        Product name is required.
+      </div>
+    </div>
+
+    <div class="">
+      <label for="productType" class="block mb-1">Product Type (int)</label>
+      <input id="productType" formControlName="productType" type="number"
+             class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Enter product type (e.g., 1, 2, 3)">
+      <div *ngIf="productForm.get('productType')?.invalid && productForm.get('productType')?.touched" class="text-red-500">
+        Product type must be a valid number.
+      </div>
+    </div>
+
+    <div class="">
+      <label for="description" class="block mb-1">Description</label>
+      <textarea id="description" formControlName="description"
+                class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Enter product description"></textarea>
+    </div>
+
+    <div class="">
+      <label for="price" class="block mb-1">Price</label>
+      <input id="price" formControlName="price" type="number"
+             class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Enter price">
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-red-500">
+        Price is required and must be greater than 0.
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="imageUrl" class="block mb-1">Image</label>
+      <input id="imageUrl" type="file" (change)="onFileSelected($event)"
+             class="w-full p-2 rounded bg-gray-700 text-white">
+    </div>
+
+    <div class="mb-4">
+      <label for="imageUrlPath" class="block mb-1">ImagePath</label>
+      <input id="imageUrlPath" formControlName="imageUrlPath"
+             class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Enter price">
+      <div *ngIf="productForm.get('imageUrlPath')?.invalid && productForm.get('imageUrlPath')?.touched" class="text-red-500">
+        Price is required and must be greater than 0.
+      </div>
+    </div>
+
+    <button type="submit" class="w-full bg-blue-500 p-2 rounded hover:bg-blue-600">
+      Submit
+    </button>
+  </form>
+</div>

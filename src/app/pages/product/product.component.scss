@@ -1,0 +1,40 @@
+.bosmani{
+  width: 550px;
+  height: 300px;
+}
+
+.kottalash{
+  font-size: 25px;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+/* Telefon uchun menyu */
+@media (max-width: 750px) {
+  .navbar .flex-grow {
+    display: none; /* Katta ekranda tugmalarni yashirish */
+  }
+}
+
+.menu-open {
+  display: block;
+}
+.language-button {
+  //background-color: #007bff; /* Tugma rangi */
+  color: white; /* Matn rangi */
+  border: none; /* Chegarani olib tashlash */
+  //padding: 10px 20px; /* Tugma ichidagi bo'shliqlar */
+  border-radius: 5px; /* Tugma burchaklari */
+  cursor: pointer; /* Pointer ko'rsatgichi */
+}
+
+.language-button:hover {
+  background-color: gray; /* Hover holati */
+}
+
+/* Dropdown */
+.absolute {
+  position: absolute;
+}

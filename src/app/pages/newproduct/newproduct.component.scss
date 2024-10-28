@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+img {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2c5282; /* hover rangini o'zgartirish */
+}
+.custom-snackbar {
+  background-color: #4caf50; /* Yashil rang */
+  color: white; /* Oq matn */
+  font-size: 20px; /* Katta matn */
+  text-align: center; /* Markazda joylashish */
+  padding: 16px; /* Xabarni to'g'ri joylashishi uchun */
+  border-radius: 8px; /* Yumshoq burchaklar */
+}
+bosmani{
+  width: 350px;
+  height: 300px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+/* Telefon uchun menyu */
+@media (max-width: 750px) {
+  .navbar .flex-grow {
+    display: none; /* Katta ekranda tugmalarni yashirish */
+  }
+}
+
+.menu-open {
+  display: block;
+}
+.language-button {
+  //background-color: #007bff; /* Tugma rangi */
+  color: white; /* Matn rangi */
+  border: none; /* Chegarani olib tashlash */
+  //padding: 10px 20px; /* Tugma ichidagi bo'shliqlar */
+  border-radius: 5px; /* Tugma burchaklari */
+  cursor: pointer; /* Pointer ko'rsatgichi */
+}
+
+.language-button:hover {
+  background-color: gray; /* Hover holati */
+}
+
+/* Dropdown */
+.absolute {
+  position: absolute;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+/* Telefon uchun menyu */
+@media (max-width: 750px) {
+  .navbar .flex-grow {
+    display: none; /* Katta ekranda tugmalarni yashirish */
+  }
+}
+
+.menu-open {
+  display: block;
+}
+.language-button {
+  //background-color: #007bff; /* Tugma rangi */
+  color: white; /* Matn rangi */
+  border: none; /* Chegarani olib tashlash */
+  //padding: 10px 20px; /* Tugma ichidagi bo'shliqlar */
+  border-radius: 5px; /* Tugma burchaklari */
+  cursor: pointer; /* Pointer ko'rsatgichi */
+}
+
+.language-button:hover {
+  background-color: gray; /* Hover holati */
+}
+
+/* Dropdown */
+.absolute {
+  position: absolute;
+}

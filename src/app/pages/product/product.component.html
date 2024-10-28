@@ -1,0 +1,133 @@
+<!-- car-list.component.html -->
+<mat-toolbar class="navbar fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-2"
+             style="background-color:midnightblue">
+  <!-- Logo va brend nomi -->
+  <div class="flex items-center space-x-4">
+    <img src="http://backend.xunarmand.uz\images\qqqqqqq.png" class="rounded-full w-12 h-10 md:w-20 md:h-16">
+    <span   class="text-yellow-500 font-bold text-lg md:text-2xl">33 011 71 11</span>
+
+  </div>
+
+
+  <!-- Telefonlarda ko'rinadigan menyu tugmasi -->
+  <div class="md:hidden">
+    <button (click)="toggleMenu()" class="text-yellow-500 transition p-2 rounded hover:bg-blue-950 ">
+      <span>MENU   </span>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <!-- O'ng tarafdagi menyu (desktop va katta ekranlar uchun) -->
+  <div *ngIf="selectedLanguageName === 'Uz'" class="hidden md:flex-grow md:flex justify-center space-x-4 md:space-x-10">
+    <button routerLink="about" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">BIZ XAQIMIZDA</button>
+    <button routerLink="menu" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MENYU</button>
+    <button routerLink="product" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MAHSULOT</button>
+    <button routerLink="contact" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">ALOQA</button>
+
+    <!-- Admin uchun mahsulot qo'shish tugmasi -->
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">AddPRODUCT</button>
+  </div>
+  <div *ngIf="selectedLanguageName === 'En'" class="hidden md:flex-grow md:flex justify-center space-x-4 md:space-x-10">
+    <button  routerLink="about" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">ABOUT</button>
+    <button routerLink="menu" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MENU</button>
+    <button routerLink="product" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">PRODUCT</button>
+    <button routerLink="contact" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">CONTACT</button>
+
+    <!-- Admin uchun mahsulot qo'shish tugmasi -->
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">AddPRODUCT</button>
+  </div>
+  <div *ngIf="selectedLanguageName === 'Ru'" class="hidden md:flex-grow md:flex justify-center space-x-4 md:space-x-10">
+    <button routerLink="about" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold"> О НАС</button>
+    <button routerLink="menu" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MENYU</button>
+    <button routerLink="product" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">  ПРОДУКТЫ</button>
+    <button routerLink="contact" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">СВЯЖИТЕСЬ</button>
+
+
+
+
+    <!-- Admin uchun mahsulot qo'shish tugmasi -->
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">AddPRODUCT</button>
+  </div>
+  <!-- Kontakt ma'lumot va ikonkali tugma (katta ekranlar uchun) -->
+  <div class="hidden md:flex   items-center space-x-4">
+    <div class="relative inline-block text-left">
+      <div class="relative inline-block text-left">
+        <div>
+          <button (click)="toggleDropdown()" class="language-button">
+            <mat-icon>g_translate</mat-icon>
+            {{ selectedLanguageName }} <!-- Tanlangan til nomini ko'rsatish -->
+          </button>
+        </div>
+
+        <div *ngIf="isOpen" class="absolute right-0 z-10 mt-2 w-20 self-center rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <button (click)="changeLanguage('uz')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+              Uz
+            </button>
+            <button (click)="changeLanguage('en')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+              En
+            </button>
+            <button (click)="changeLanguage('ru')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+              Ru
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button class=" bg-black font-bold rounded-full p-1" aria-label="Example icon-button with share icon" (click)="showUserInfo()">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
+  <!-- Mobil menyu (kichik ekranlar uchun) -->
+  <div *ngIf="menuOpen" class="absolute top-14 right-0 w-48 bg-midnightblue rounded shadow-lg p-4 flex flex-col space-y-2 md:hidden">
+    <div class="font-bold">
+      <button mat-icon-button class="text-white bg-red-600 rounded-full font-bold" aria-label="Example icon-button with share icon" (click)="showUserInfo()">
+        <mat-icon>person</mat-icon>
+        <span> MALUMOT</span>
+      </button>
+    </div>
+    <button routerLink="about" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">ABOUT</button>
+    <button routerLink="menu" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">MENU</button>
+    <button routerLink="product" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">PRODUCT</button>
+    <button  routerLink="contact" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">CONTACT</button>
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-amber-500 transition p-2 rounded hover:bg-blue-950 font-bold">AddPRODUCT</button>
+
+    <!-- Mobil til tugmasi (yangilandi) -->
+    <div class="mt-4">
+      <button (click)="toggleDropdown()" class="language-button">
+        <mat-icon>g_translate</mat-icon>
+        {{ selectedLanguageName }}
+      </button>
+      <div *ngIf="isOpen" class="absolute right-0 z-10 mt-2 w-20 self-center rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+          <button (click)="changeLanguage('uz')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Uz</button>
+          <button (click)="changeLanguage('en')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">En</button>
+          <button (click)="changeLanguage('ru')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Ru</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+
+<div class=" mx-auto  py-20 p-5" >
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+    <div *ngFor="let product of products" class="bg-whte shadow-lg rounded-lg overflow-hidden">
+      <img src="{{product.imageUrl}}" alt="{{ product.productName }}"  class="  w-full h-30 object-cover bosmani">
+      <div class="p-4">
+        <h3 class="text-lg font-bold kottalash">{{ product.productName }}</h3>
+        <p class="text-sm font-bold text-gray-500 mb-2">{{ product.type }}</p>
+        <p class="text-gray-900 font-black font-bold">{{ product.description }}</p>
+        <div class="flex justify-between items-center mt-4">
+          <button (click)="openNewWindow(product.id)" class="bg-blue-600 text-white px-4 py-2 rounded  transform hover:scale-105 hover:bg-blue-900">
+          <p class="text-lg font-semibold text-blue-600"></p>
+            BATAVSIL
+          </button >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+<app-footer></app-footer>

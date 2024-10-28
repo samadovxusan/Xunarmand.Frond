@@ -1,0 +1,294 @@
+<mat-toolbar class="navbar fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-2"
+             style="background-color:midnightblue">
+  <!-- Logo va brend nomi -->
+  <div class="flex items-center space-x-4">
+    <img src="http://backend.xunarmand.uz\images\qqqqqqq.png" class="rounded-full w-12 h-10 md:w-20 md:h-16">
+    <span   class="text-yellow-500 font-bold text-lg md:text-2xl">33 011 71 11</span>
+
+  </div>
+
+
+  <!-- Telefonlarda ko'rinadigan menyu tugmasi -->
+  <div class="md:hidden">
+    <button (click)="toggleMenu()" class="text-yellow-500 transition p-2 rounded hover:bg-blue-950 ">
+      <span>MENU   </span>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <!-- O'ng tarafdagi menyu (desktop va katta ekranlar uchun) -->
+  <div *ngIf="selectedLanguageName === 'Uz'" class="hidden md:flex-grow md:flex justify-center space-x-4 md:space-x-10">
+    <button routerLink="about" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">BIZ XAQIMIZDA</button>
+    <button routerLink="menu" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MENYU</button>
+    <button routerLink="product" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MAHSULOT</button>
+    <button routerLink="contact" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">ALOQA</button>
+
+    <!-- Admin uchun mahsulot qo'shish tugmasi -->
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">AddPRODUCT</button>
+  </div>
+  <div *ngIf="selectedLanguageName === 'En'" class="hidden md:flex-grow md:flex justify-center space-x-4 md:space-x-10">
+    <button  routerLink="about" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">ABOUT</button>
+    <button routerLink="menu" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MENU</button>
+    <button routerLink="product" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">PRODUCT</button>
+    <button routerLink="contact" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">CONTACT</button>
+
+    <!-- Admin uchun mahsulot qo'shish tugmasi -->
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">AddPRODUCT</button>
+  </div>
+  <div *ngIf="selectedLanguageName === 'Ru'" class="hidden md:flex-grow md:flex justify-center space-x-4 md:space-x-10">
+    <button routerLink="about" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold"> О НАС</button>
+    <button routerLink="menu" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">MENYU</button>
+    <button routerLink="product" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">  ПРОДУКТЫ</button>
+    <button routerLink="contact" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">СВЯЖИТЕСЬ</button>
+
+
+
+
+    <!-- Admin uchun mahsulot qo'shish tugmasi -->
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-yellow-500 transition p-2 rounded hover:scale-105 hover:bg-blue-950 font-bold">AddPRODUCT</button>
+  </div>
+  <!-- Kontakt ma'lumot va ikonkali tugma (katta ekranlar uchun) -->
+  <div class="hidden md:flex   items-center space-x-4">
+    <div class="relative inline-block text-left">
+      <div class="relative inline-block text-left">
+        <div>
+          <button (click)="toggleDropdown()" class="language-button">
+            <mat-icon>g_translate</mat-icon>
+            {{ selectedLanguageName }} <!-- Tanlangan til nomini ko'rsatish -->
+          </button>
+        </div>
+
+        <div *ngIf="isOpen" class="absolute right-0 z-10 mt-2 w-20 self-center rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <button (click)="changeLanguage('uz')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+              Uz
+            </button>
+            <button (click)="changeLanguage('en')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+              En
+            </button>
+            <button (click)="changeLanguage('ru')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+              Ru
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button class=" bg-black font-bold rounded-full p-1" aria-label="Example icon-button with share icon" (click)="showUserInfo()">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
+  <!-- Mobil menyu (kichik ekranlar uchun) -->
+  <div *ngIf="menuOpen" class="absolute top-14 right-0 w-48 bg-midnightblue rounded shadow-lg p-4 flex flex-col space-y-2 md:hidden">
+    <div class="font-bold">
+      <button mat-icon-button class="text-white bg-red-600 rounded-full font-bold" aria-label="Example icon-button with share icon" (click)="showUserInfo()">
+        <mat-icon>person</mat-icon>
+        <span> MALUMOT</span>
+      </button>
+    </div>
+    <button routerLink="about" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">ABOUT</button>
+    <button routerLink="menu" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">MENU</button>
+    <button routerLink="product" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">PRODUCT</button>
+    <button  routerLink="contact" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">CONTACT</button>
+    <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-amber-500 transition p-2 rounded hover:bg-blue-950 font-bold">AddPRODUCT</button>
+
+    <!-- Mobil til tugmasi (yangilandi) -->
+    <div class="mt-4">
+      <button (click)="toggleDropdown()" class="language-button">
+        <mat-icon>g_translate</mat-icon>
+        {{ selectedLanguageName }}
+      </button>
+      <div *ngIf="isOpen" class="absolute right-0 z-10 mt-2 w-20 self-center rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+          <button (click)="changeLanguage('uz')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Uz</button>
+          <button (click)="changeLanguage('en')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">En</button>
+          <button (click)="changeLanguage('ru')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Ru</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+
+<div class="bg-gray-200  ">
+  <section *ngIf="selectedLanguageName === 'Uz'" class="relative bg-gray-800 text-yellow-200">
+    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+
+    <!-- Content on top of video -->
+    <div class="relative z-20 py-20">
+      <div class="container mx-auto text-center">
+        <!-- Uzbek -->
+        <h1 class="text-5xl font-extrabold mb-6 text-yellow-500">Xunarmandga Xush Kelibsiz</h1>
+        <p class="text-xl mb-4 text-yellow-500">Ustalik va Innovatsion Dizayn</p>
+      </div>
+      <div class="container mx-auto text-center mt-8">
+        <p class="text-lg text-yellow-500 max-w-3xl mx-auto">
+          <strong class="text-white">Xunarmand</strong> kompaniyasida biz eng sifatli qo'l mehnati bilan tayyorlangan mahsulotlarni taqdim etishga intilamiz. <strong class="text-white">Dimaxodlar</strong>dan <strong class="text-white">Gumbazlar</strong>gacha, bizning mahsulotlarimiz an'anaviy ustalik va zamonaviy dizaynning ajoyib uyg'unligi hisoblanadi.
+        </p>
+        <a routerLink="product" class="mt-8 inline-block px-8 py-3 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold rounded-lg shadow-lg transition">Mahsulotlarimizni Ko'ring</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Russian -->
+  <section *ngIf="selectedLanguageName === 'Ru'" class="relative bg-gray-800 text-yellow-200">
+    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+
+    <div class="relative z-20 py-20">
+      <div class="container mx-auto text-center">
+        <h1 class="text-5xl font-extrabold mb-6 text-yellow-500">Добро пожаловать в Xunarmand</h1>
+        <p class="text-xl mb-4 text-yellow-500">Мастерство и инновационный дизайн</p>
+      </div>
+      <div class="container mx-auto text-center mt-8">
+        <p class="text-lg text-yellow-500 max-w-3xl mx-auto">
+          В <strong class="text-white">Xunarmand</strong> мы стремимся предоставить нашим клиентам лучшие изделия ручной работы. От <strong class="text-white">Димаходов</strong> до <strong class="text-white">Куполов</strong>, наши продукты сочетают традиционные ремесла и современный дизайн.
+        </p>
+        <a routerLink="product" class="mt-8 inline-block px-8 py-3 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold rounded-lg shadow-lg transition">Изучите Наши Продукты</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- English -->
+  <section *ngIf="selectedLanguageName === 'En'" class="relative bg-gray-800 text-yellow-200">
+    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+
+    <div class="relative z-20 py-20">
+      <div class="container mx-auto text-center">
+        <h1 class="text-5xl font-extrabold mb-6 text-yellow-500">Welcome to Xunarmand</h1>
+        <p class="text-xl mb-4 text-yellow-500">Expert Craftsmanship & Innovative Design</p>
+      </div>
+      <div class="container mx-auto text-center mt-8">
+        <p class="text-lg text-yellow-500 max-w-3xl mx-auto">
+          At <strong class="text-white">Xunarmand</strong>, we are passionate about providing our customers with the finest hand-crafted products. From <strong class="text-white">Dimaxodlar</strong> to <strong class="text-white">Gumbazlar</strong>, our products are a blend of traditional craftsmanship and modern design.
+        </p>
+        <a routerLink="product" class="mt-8 inline-block px-8 py-3 bg-yellow-500 hover:bg-yellow-400 text-white font-semibold rounded-lg shadow-lg transition">Explore Our Products</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+  <!-- Footer and Router Outlet -->
+
+
+
+<footer class="bg-gray-900 text-yellow-500 py-5">
+  <div *ngIf="selectedLanguageName === 'Uz'" class="container mx-auto flex flex-wrap justify-between items-center  lg:space-y-0 lg:space-x-10 p-5" >
+    <div>
+      <img src="http://backend.xunarmand.uz\images\qqqqqqq.png" alt="Company Logo" class="rounded-full w-30 h-48 mx-auto  lg:mb-0">
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Mahsulotlar</li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="dimaxodlar">Dimaxodlar</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="gumbazlar">Gumbazlar</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="profnastillar">Profnastillar</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="aksesuarlar">Aksesuarlar</a></li>
+      </ul>
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Ma'lumotlar</li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="about">Biz haqimizda</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="menu">Menyu</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="product">Mahsulot</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="contact">Aloqa</a></li>
+
+      </ul>
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Aloqa</li>
+        <li><a href="mailto:samadovxusan9013@gmail.com" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">samadovxusan9013&#64;gmail.com</a></li>
+        <li><a href="tel:+998908086417" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">+998 90 808 64 17</a></li>
+        <li><a href="tel:+998330117111" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">+998 33 011 71 11</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLanguageName === 'Ru'" class="container mx-auto flex flex-wrap justify-between items-center  lg:space-y-0 lg:space-x-10 p-5" >
+    <div>
+      <img src="http://xunarmand.uz\images\qqqqqqq.png" alt="Company Logo" class="rounded-full w-30 h-48 mx-auto  lg:mb-0">
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Продукты</li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="dimaxodlar">Димаходлар</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="gumbazlar">Купола</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="profnastillar">Профнастил</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="aksesuarlar">Аксессуары</a></li>
+      </ul>
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Информация</li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="about">О нас</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="menu">Меню</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="product">Продукт</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="contact">Контакт</a></li>
+
+      </ul>
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Контакт</li>
+        <li><a href="mailto:samadovxusan9013@gmail.com" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">samadovxusan9013&#64;gmail.com</a></li>
+        <li><a href="tel:+998908086417" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">+998 90 808 64 17</a></li>
+        <li><a href="tel:+998330117111" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">+998 33 011 71 11</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLanguageName === 'En'" class="container mx-auto flex flex-wrap justify-between items-center  lg:space-y-0 lg:space-x-10 p-5" >
+    <div>
+      <img src="http://backend.xunarmand.uz\images\qqqqqqq.png" alt="Company Logo" class="rounded-full w-30 h-48 mx-auto  lg:mb-0">
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Products</li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="dimaxodlar">Dimakhodes</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="gumbazlar">Domes</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="profnastillar">Profnastyles</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="aksesuarlar">Accessories</a></li>
+      </ul>
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Information</li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="about">About</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="menu">Menu</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="product">Product</a></li>
+        <li><a href="#" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md" routerLink="contact">Contact</a></li>
+
+      </ul>
+    </div>
+    <div class="w-full lg:w-auto">
+      <ul>
+        <li class="font-bold text-2xl mb-4">Contact</li>
+        <li><a href="mailto:samadovxusan9013@gmail.com" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">samadovxusan9013&#64;gmail.com</a></li>
+        <li><a href="tel:+998908086417" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">+998 90 808 64 17</a></li>
+        <li><a href="tel:+998330117111" class="text-xl transition transform hover:scale-105 hover:bg-yellow-300 hover:text-gray-900 rounded-md">+998 33 011 71 11</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class=" mx-auto mt-10 flex flex-col lg:flex-row justify-between items-center border-t border-gray-600 pt-6 space-y-4 lg:space-y-0">
+    <div class="flex space-x-4">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/barcha_tunka_ishlari/" target="_blank" class="bg-gray-700 p-3 rounded-full hover:bg-gray-600">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="h-6 w-6">
+      </a>
+      <!-- Telegram -->
+      <a href="https://t.me/Xunaarmand_uz" target="_blank" class="bg-gray-700 p-3 rounded-full hover:bg-gray-600">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="h-6 w-6">
+      </a>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com" target="_blank" class="bg-gray-700 p-3 rounded-full hover:bg-gray-600">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="Facebook" class="h-6 w-6">
+      </a>
+    </div>
+    <div class="text-center lg:text-left text-lg text-yellow-500">
+      &copy; 2024 <strong><a href="#" class="transition transform hover:scale-105 hover:bg-white hover:text-black"><strong>XUNARMAND.UZ</strong></a></strong>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,45 @@
+@media (max-width: 768px) {
+  footer .container {
+    flex-direction: row; /* Elementlarni gorizontal tartibda joylashtirish */
+    text-align: center; /* Matnni markazda joylashtirish */
+  }
+
+  footer .container div {
+    width: 100%; /* Har bir div'ni to'liq kenglikda qilish */
+  }
+
+  footer ul {
+    margin-bottom: 20px; /* Har bir ul elementiga pastki masofa berish */
+  }
+
+  footer ul li {
+    margin-bottom: 10px; /* Har bir li elementiga pastki masofa berish */
+  }
+
+  footer .container img {
+    width: 120px; /* Logo hajmini kichikroq qilish */
+    height: 120px; /* Logo balandligini o'rnatish */
+    margin: 0 auto 20px; /* Markazda joylashtirish */
+  }
+
+  footer .container a {
+    font-size: 1rem; /* Matn o'lchamlarini moslashtirish */
+  }
+
+  footer .container .flex {
+    justify-content: center; /* Flex elementlarini markazga joylashtirish */
+  }
+  .flex {
+    //flex-direction: column; /* Kichik ekranlarda ustma-ust chiqarish */
+    align-items: center; /* Tugmalarni markazga joylash */
+  }
+
+  footer .border-t .flex {
+    justify-content: center; /* Flex elementlarini markazga joylashtirish */
+    margin-bottom: 20px; /* Pastki masofa berish */
+  }
+
+  footer .border-t .text-lg {
+    margin-top: 10px; /* Yuqoridan masofa berish */
+  }
+}
