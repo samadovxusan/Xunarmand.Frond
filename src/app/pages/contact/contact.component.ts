@@ -13,6 +13,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../../../services/auth.service";
 import {NavbarComponent} from "../../companents/navbar/navbar.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-contact',
@@ -51,7 +52,7 @@ export class ContactComponent {
   decodeToken : any | null;
   roles : string = '';
   router = inject(Router);
-  constructor(private dialog: MatDialog,private http: HttpClient) {
+  constructor(private snackBar: MatSnackBar,private dialog: MatDialog,private http: HttpClient) {
     this.selectedLanguage = 'uz'; // Dastlabki til
     this.contactForm = new FormGroup({
       fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -62,6 +63,9 @@ export class ContactComponent {
       message: new FormControl('', [Validators.required, Validators.maxLength(500)]),
     });}
 
+   
+
+
   onSubmit() {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
@@ -69,7 +73,13 @@ export class ContactComponent {
 
       this.authService.sendmessage(this.str).subscribe(
         (response) => {
-          console.log('Message sent successfully', response);
+
+        this.snackBar.open('Sizga tez orada aloqaga chiqishadi!', 'Yopish', {
+        duration: 3000, // 3 soniya davomida ko'rsatish
+        verticalPosition: 'top', // O'ngdan yuqoriga
+        horizontalPosition: 'end', // O'ng tarafda
+        panelClass: ['custom-snackbar'] // Yangi CSS sinfi
+      });
           this.contactForm.reset();
         },
         (error) => {

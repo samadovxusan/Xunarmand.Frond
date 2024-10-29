@@ -2,7 +2,7 @@
              style="background-color:midnightblue">
   <!-- Logo va brend nomi -->
   <div class="flex items-center space-x-4">
-    <img src="http://backend.xunarmand.uz\images\qqqqqqq.png" class="rounded-full w-12 h-10 md:w-20 md:h-16">
+    <img src="https://backend.xunarmand.uz\images\qqqqqqq.png" class="rounded-full w-12 h-10 md:w-20 md:h-16">
     <span   class="text-yellow-500 font-bold text-lg md:text-2xl">33 011 71 11</span>
 
   </div>
@@ -52,7 +52,7 @@
     <div class="relative inline-block text-left">
       <div class="relative inline-block text-left">
         <div>
-          <button (click)="toggleDropdown()" class="language-button text-white ">
+          <button (click)="toggleDropdown()" class="language-button">
             <mat-icon>g_translate</mat-icon>
             {{ selectedLanguageName }} <!-- Tanlangan til nomini ko'rsatish -->
           </button>
@@ -80,24 +80,24 @@
   <!-- Mobil menyu (kichik ekranlar uchun) -->
   <div *ngIf="menuOpen" class="absolute top-14 right-0 w-48 bg-midnightblue rounded shadow-lg p-4 flex flex-col space-y-2 md:hidden">
     <div class="font-bold">
-      <button mat-icon-button class="text-white  rounded-full font-bold" aria-label="Example icon-button with share icon" (click)="showUserInfo()">
-        <mat-icon>person</mat-icon>
-        <span> MALUMOT</span>
+      <button mat-icon-button class="text-white bg-red-600 rounded-full font-bold" aria-label="Example icon-button with share icon" (click)="showUserInfo()">
+        <mat-icon color="blue-600">person</mat-icon>
+        <span class="text-blue-600"> MALUMOT</span>
       </button>
     </div>
-    <button routerLink="about" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">ABOUT</button>
-    <button routerLink="menu" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">MENU</button>
-    <button routerLink="product" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">PRODUCT</button>
-    <button  routerLink="contact" class="text-white transition p-2 rounded hover:bg-blue-950 font-bold">CONTACT</button>
+    <button routerLink="about" class="text-blue-600 transition p-2 rounded hover:bg-blue-950 font-bold">ABOUT</button>
+    <button routerLink="menu" class="text-blue-600 transition p-2 rounded hover:bg-blue-950 font-bold">MENU</button>
+    <button routerLink="product" class="text-blue-600 transition p-2 rounded hover:bg-blue-950 font-bold">PRODUCT</button>
+    <button  routerLink="contact" class="text-blue-600 transition p-2 rounded hover:bg-blue-950 font-bold">CONTACT</button>
     <button *ngIf="isAdmin()" (click)="openAddProductDialog()" class="text-amber-500 transition p-2 rounded hover:bg-blue-950 font-bold">AddPRODUCT</button>
 
     <!-- Mobil til tugmasi (yangilandi) -->
     <div class="mt-4">
-      <button (click)="toggleDropdown()" class="language-button text-white">
+      <button (click)="toggleDropdown()" class="language-button">
         <mat-icon>g_translate</mat-icon>
         {{ selectedLanguageName }}
       </button>
-      <div *ngIf="isOpen" class="absolute right-0 z-10 mt-2 w-20 self-center rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+      <div *ngIf="isOpen" class="absolute right-0 z-10 mt-2 w-20 self-center rounded-md shadow-lg bg-blue-600 ring-1 ring-black ring-opacity-5">
         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
           <button (click)="changeLanguage('uz')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Uz</button>
           <button (click)="changeLanguage('en')" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">En</button>
@@ -107,7 +107,6 @@
     </div>
   </div>
 </mat-toolbar>
-
 
 <div class="min-h-screen flex items-center justify-center bg-opacity-0  py-20">
   <form class="shadow-2xl rounded-2xl p-5 bg-white w-full max-w-md" [formGroup]="form">
